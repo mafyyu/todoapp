@@ -3,8 +3,8 @@ import { supabase } from "./supabaseClient";
 export async function AddTask (
     userId:number,
     title:string,
-    deadline:Date,
-    detail:string
+    deadline:Date|null,
+    detail:string|null
 ) {
     try{
         const {data,error} = await supabase
