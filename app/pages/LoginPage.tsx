@@ -1,21 +1,21 @@
+"use client";
+
 import Head from "next/head";
-import styles from "../styles/Home.module.css";
 import { createClient } from '@supabase/supabase-js'
 import { Auth } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared';
+import { supabase } from '../utils/supabaseClient';
 
 export default function Google(){
-  const supabase = createClient('Project URL', 'Project API anon key')
-
   return (
     <>
-      <div className={styles.container}>
+      <div >
       <Head>
         <title>Google認証画面</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <main className={styles.main}>
-        <div className={styles.grid}>
+      <main>
+        <div>
           <Auth
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
@@ -23,7 +23,7 @@ export default function Google(){
           />
         </div>
       </main>
-      <footer className={styles.footer}>
+      <footer>
       </footer>
     </div>
     </>
