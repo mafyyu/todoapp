@@ -1,22 +1,21 @@
 import { supabase } from "./supabaseClient";
  
 export async function AddTask (
-    id:number,
     userId:number,
     title:string,
-    is_completed:boolean,
-    deadline:Date
+    deadline:Date,
+    detail:string
 ) {
     try{
         const {data,error} = await supabase
         .from('Task')
         .insert([
             {
-                id:id,
                 user_id: userId,
                 title: title,
-                is_completed:is_completed,
-                deadline:deadline
+                is_completed:false,
+                deadline:deadline,
+                detail
             }
         ])
     }catch(error){

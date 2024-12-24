@@ -13,6 +13,7 @@ export type Database = {
         Row: {
           created_at: string
           deadline: string | null
+          detail: string | null
           id: number
           is_completed: boolean | null
           title: string | null
@@ -21,6 +22,7 @@ export type Database = {
         Insert: {
           created_at?: string
           deadline?: string | null
+          detail?: string | null
           id?: number
           is_completed?: boolean | null
           title?: string | null
@@ -29,6 +31,7 @@ export type Database = {
         Update: {
           created_at?: string
           deadline?: string | null
+          detail?: string | null
           id?: number
           is_completed?: boolean | null
           title?: string | null
