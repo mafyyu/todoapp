@@ -3,19 +3,23 @@ import { text } from "stream/consumers";
 import { AddTask } from "../utils/AddTask";
 import { useEffect, useState } from "react";
 import FetchID from "../utils/fetchId";
-
+import { useRouter } from "next/navigation";
 
 export function TaskForm (){
+  const router = useRouter()
+
   const [title,setTitle] = useState("")
   const [data,setDate] = useState("")
   const [detail,setDetail] = useState("")
   const [userid,setUserid] = useState<string|null>(null);
+
 
   const id = FetchID()
   setUserid(id);
 
   const insertData = async ()=>{
     const info = await AddTask(userid,title,data,detail)
+    router.push('/')
   }
   
 
