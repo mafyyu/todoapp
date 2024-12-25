@@ -2,20 +2,20 @@
 import { text } from "stream/consumers";
 import { AddTask } from "../utils/AddTask";
 import { useEffect, useState } from "react";
-import FetchID from "../utils/fetchId";
-
+import useFetchID from "../utils/fetchId";
+import { useRouter } from "next/navigation";
 
 export function TaskForm (){
-  const [title,setTitle] = useState("")
-  const [data,setDate] = useState("")
-  const [detail,setDetail] = useState("")
-  const [userid,setUserid] = useState<string|null>(null);
+  const router = useRouter()
+  const id = useFetchID();
 
-  const id = FetchID()
-  setUserid(id);
+  const [title,setTitle] = useState("")
+  const [data,setDate] = useState<string |null>(null)
+  const [detail,setDetail] = useState("")
 
   const insertData = async ()=>{
-    const info = await AddTask(userid,title,data,detail)
+    const info = await AddTask(id,title,data,detail)
+    router.push('/')
   }
   
 
@@ -42,7 +42,7 @@ export function TaskForm (){
           <label htmlFor="dueDate" className="block text-sm font-medium text-gray-700">締切（任意）</label>
           <input
             type="date"
-            value={data}
+            value={data || ""}
             onChange={(e)=>setDate(e.target.value)}
             id="dueDate"
             className="mt-2 p-3 w-full border border-gray-300 rounded-md focus:outline-none focus:ring-2 focus:ring-indigo-500"

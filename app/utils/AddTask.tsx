@@ -18,7 +18,10 @@ export async function AddTask (
                 detail: detail
             }
         ])
+        if (error){
+            console.log(error.message)
+        }
     }catch(error){
-        console.log(error)
+        console.log("inserterror",error)
     }
 }
