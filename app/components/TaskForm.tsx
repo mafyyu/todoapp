@@ -1,20 +1,23 @@
+"use client";
 import { text } from "stream/consumers";
 import { AddTask } from "../utils/AddTask";
 import { useEffect, useState } from "react";
+import FetchID from "../utils/fetchId";
 
 
 export function TaskForm (){
   const [title,setTitle] = useState("")
   const [data,setDate] = useState("")
   const [detail,setDetail] = useState("")
+  const [userid,setUserid] = useState<string|null>(null);
+
+  const id = FetchID()
+  setUserid(id);
+
+  const insertData = async ()=>{
+    const info = await AddTask(userid,title,data,detail)
+  }
   
-
-
-  useEffect(()=>{
-    const insertData = async ()=>{
-      const info = await AddTask(userid,title,data,detail)
-    }
-  })
 
   return (
     <div className="max-w-lg mx-auto p-6 bg-white rounded-lg shadow-md">
@@ -61,7 +64,9 @@ export function TaskForm (){
   
         {/* 追加ボタン */}
         <button
-          type="submit"
+
+          onClick={insertData}
+          type="button"
           className="w-full py-3 bg-blue-500 text-white font-semibold rounded-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-indigo-500"
         >
           タスクを追加
