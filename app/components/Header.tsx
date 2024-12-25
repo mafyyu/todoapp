@@ -1,6 +1,15 @@
+'use client';
 import react from "react";
+import { useRouter } from "next/navigation";
 
 export function Header (){
+    const router = useRouter();
+
+    const pushlogin =()=>{
+        router.push('/login')
+    }
+
+
     return (
         <header className="bg-blue-600 text-white shadow-md">
           <div className="container mx-auto px-4 py-4 flex justify-between items-center">
@@ -26,7 +35,7 @@ export function Header (){
     
             {/* ユーザーアクション */}
             <div className="space-x-2">
-              <button className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition">
+              <button onClick={pushlogin} className="bg-white text-blue-600 px-4 py-2 rounded hover:bg-blue-100 transition">
                 Log In
               </button>
               <button className="bg-blue-800 px-4 py-2 rounded hover:bg-blue-700 transition">
