@@ -1,9 +1,9 @@
 import { supabase } from "./supabaseClient";
  
 export async function AddTask (
-    userId:number,
+    userId:string|null,
     title:string,
-    deadline:Date|null,
+    deadline:string|null,
     detail:string|null
 ) {
     try{
@@ -15,7 +15,7 @@ export async function AddTask (
                 title: title,
                 is_completed:false,
                 deadline:deadline,
-                detail
+                detail: detail
             }
         ])
     }catch(error){

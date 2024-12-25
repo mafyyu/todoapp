@@ -20,6 +20,7 @@ export default function Google(){
             supabaseClient={supabase}
             appearance={{ theme: ThemeSupa }}
             providers={['google']}
+            redirectTo="localhost:3000/home"
           />
         </div>
       </main>
