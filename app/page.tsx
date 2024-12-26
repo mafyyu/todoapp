@@ -6,11 +6,6 @@ import { fetchData } from "./utils/fetchData";
 const Home = async () => {
   // サンプルタスクデータ
   const tasks = await fetchData();
-  if (tasks?.length==0){
-    console.log(tasks,"length0")
-  }
-
-
 
   return (
     <>
