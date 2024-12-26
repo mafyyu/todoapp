@@ -1,25 +1,14 @@
 import { Header } from "./components/Header";
+import { fetchData } from "./utils/fetchData";
 
 
 
-const Home = () => {
+const Home = async () => {
   // サンプルタスクデータ
-  const tasks = ([
-    {
-      id: 1,
-      title: "aaa",
-      description: "タスクの詳細",
-      due_date: "2024-12-31",
-      tags: ["重要", "仕事"],
-    },
-    {
-      id: 2,
-      title: "bbb",
-      description: "別のタスクの詳細",
-      due_date: "2024-12-25",
-      tags: ["個人的", "買い物"],
-    },
-  ]);
+  const tasks = await fetchData();
+  if (tasks?.length==0){
+    console.log(tasks,"length0")
+  }
 
 
 
@@ -29,10 +18,10 @@ const Home = () => {
       <div className="max-w-4xl mx-auto p-4">
         <h1 className="text-3xl font-semibold text-center mb-6">現在のタスク</h1>
         <div className="space-y-4">
-          {tasks.length === 0 ? (
+          {tasks?.length === 0 ? (
             <p className="text-center text-lg">タスクはありません。</p>
           ) : (
-            tasks.map((task) => (
+            tasks?.map((task) => (
               <div
                 key={task.id}
                 className={`p-4 border rounded-lg shadow-md 
