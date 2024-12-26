@@ -1,6 +1,7 @@
 import { Header } from "./components/Header";
 
 
+
 const Home = () => {
   // サンプルタスクデータ
   const tasks = ([
@@ -34,19 +35,33 @@ const Home = () => {
             tasks.map((task) => (
               <div
                 key={task.id}
-                className="p-4 border rounded-lg shadow-md bg-white"
+                className={`p-4 border rounded-lg shadow-md 
+                }`}
               >
                 <h2 className="text-xl font-bold">{task.title}</h2>
                 {task.description && (
                   <p className="text-gray-600 mt-2">{task.description}</p>
                 )}
-                {task.due_date && (
-                  <p className="text-gray-500 mt-2">締切: {task.due_date}</p>
-                )}
-                
+                <p className="text-gray-500 mt-2">
+                  締切: 2024-12-30 <span className="text-sm">(3日残り)</span>
+                </p>
+                <p
+                  className={`mt-2 font-semibold 
+                  }`}
+                >
+                  
+                </p>
+  
+                {/* 完了ボタン */}
+                <button
+                  className={`mt-4 px-4 py-2 rounded-lg`}
+                >
+                  完了にする
+                </button>
+  
                 {/* 削除ボタン */}
                 <button
-                  className="mt-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
+                  className="mt-4 ml-4 px-4 py-2 bg-red-500 text-white rounded-lg hover:bg-red-600"
                 >
                   削除
                 </button>
@@ -57,6 +72,7 @@ const Home = () => {
       </div>
     </>
   );
+  
 };
 
 export default Home;
