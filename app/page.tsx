@@ -4,14 +4,23 @@ import { fetchData } from "./utils/fetchData";
 
 
 const Home = async () => {
-  // サンプルタスクデータ
   const tasks = await fetchData();
-  if (tasks?.length==0){
-    console.log(tasks,"length0")
-  }
 
-
-
+  const calcdays = function(task_id:number){
+    if (tasks){
+      const task = tasks[task_id];
+      if (task && task.deadline !==undefined){
+        const now_date = new Date();
+        now_date.setHours(0,0,0,0)
+        const task_date = new Date(task.deadline);
+        task_date.setHours(0,0,0,0)
+        console.log((now_date.getTime()-task_date.getTime())/(1000 * 60 * 60 * 24),"残り日程");
+        return (now_date.getTime()-task_date.getTime())/(1000 * 60 * 60 * 24);
+      }else{
+        return null
+      }
+    }
+  };
   return (
     <>
       <Header />
@@ -32,7 +41,7 @@ const Home = async () => {
                   <p className="text-gray-600 mt-2">{task.description}</p>
                 )}
                 <p className="text-gray-500 mt-2">
-                  締切: 2024-12-30 <span className="text-sm">(3日残り)</span>
+                  締切:{ task.deadline } <span className="text-sm">残り:{calcdays(task.id)}</span>
                 </p>
                 <p
                   className={`mt-2 font-semibold 
